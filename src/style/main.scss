@@ -1,0 +1,95 @@
+$size: 15vw;
+$colorO: lawngreen;
+$colorX: yellow;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 100vh;
+
+    .game {
+      display: grid;
+      grid-template-columns: repeat(3, $size);
+      grid-template-rows: repeat(3, $size);
+      grid-gap: 10px;
+
+      &__item {
+        position: relative;
+        background-color: lightgray;
+        border: 1px solid #666;
+        border-radius: 5px;
+        transition: 0.5s linear;
+
+        &:hover {
+          background-color: dimgray;
+        }
+
+        &--o {
+          &:before {
+            position: absolute;
+            content: '';
+            width: 80%;
+            height: 80%;
+            border: $colorO 10px solid;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        &--x {
+          &:before, &:after {
+            position: absolute;
+            content: '';
+            height: 10px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            background-color: $colorX;
+          }
+
+          &:after {
+            transform: translateY(-50%) rotate(45deg);
+          }
+
+          &:before {
+            transform: translateY(-50%) rotate(-45deg);
+          }
+        }
+      }
+
+      .game__info {
+        grid-column-start: 1;
+        grid-column-end: 4;
+
+        &__result {
+          padding: 10px;
+        }
+
+        &__reset {
+          padding: 10px;
+          width: 100%;
+          border: none;
+          transition: 0.5s ease-out;
+
+          &:hover {
+            background-color: dimgray;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
